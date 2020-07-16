@@ -92,9 +92,17 @@ class UI:
         """
         while True:
             try:
-                r = self.minitel.recevoir_sequence(attente=30)
-                self.gere_touche(r)
+                sequence = self.minitel.recevoir_sequence(attente=30)
+                if self.gere_touche(sequence) == False:
+                    print ( "InUI[{}]".format(sequence) )
+                    print ( "Longueur" )
+                    print (sequence.longueur )
+                    print ( "Valeurs" )
+                    for element in sequence.valeurs:
+                        print ( element )
+                    break
             except Empty :
+                print("InUI[Empty]")
                 pass
 
     def affiche(self):
